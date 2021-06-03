@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 
 import { CONTRACT_ADDRESSES, POOL_ALIASES, SUPPORTED_NETWORKS } from 'lib/constants'
 import { ButtonLink } from 'lib/components/ButtonLink'
-import { Button } from 'lib/components/Button'
+import { Button } from '@pooltogether/react-components'
 import { Card, CardTitle } from 'lib/components/Card'
 import { Collapse } from 'lib/components/Collapse'
 import { CheckboxInputGroup } from 'lib/components/CheckboxInputGroup'

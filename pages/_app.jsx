@@ -38,8 +38,6 @@ if (process.env.NEXT_JS_SENTRY_DSN) {
 }
 
 function MyApp({ Component, pageProps }) {
-  useInitializeOnboard()
-
   // ChunkLoadErrors happen when someone has the app loaded, then we deploy a
   // new release, and the user's app points to previous chunks that no longer exist
   useEffect(() => {
@@ -56,16 +54,23 @@ function MyApp({ Component, pageProps }) {
       <QueryClientProvider client={queryClient}>
         <ThemeContextProvider>
           <JotaiProvider>
-            <Layout>
-              <CustomErrorBoundary>
-                <Component {...pageProps} />
-              </CustomErrorBoundary>
-            </Layout>
+            <InitializeOnboard>
+              <Layout>
+                <CustomErrorBoundary>
+                  <Component {...pageProps} />
+                </CustomErrorBoundary>
+              </Layout>
+            </InitializeOnboard>
           </JotaiProvider>
         </ThemeContextProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   )
+}
+
+const InitializeOnboard = (props) => {
+  useInitializeOnboard()
+  return props.children
 }
 
 export default MyApp
