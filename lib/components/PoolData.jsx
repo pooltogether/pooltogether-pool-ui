@@ -26,7 +26,7 @@ export const getDataFetchingErrorMessage = (address, type, message) =>
  */
 export const PoolData = (props) => {
   const { chainId } = useNetwork()
-  const { walletOnUnsupportedNetwork } = useWalletNetwork()
+  const { walletOnUnsupportedNetwork, walletName, wallet } = useWalletNetwork()
 
   const usersAddress = useUsersAddress()
 
@@ -38,7 +38,19 @@ export const PoolData = (props) => {
   const { isFetched: externalErc20AwardsIsFetched } = useExternalErc20Awards()
   const { isFetched: externalErc721AwardsIsFetched } = useExternalErc721Awards()
 
-  if (walletOnUnsupportedNetwork) {
+  let walletOnUnsupportedNetworkOverride = true
+  if (walletName === 'WalletConnect') {
+    if (chainId === 56) {
+      wallet.provider.chainId = chainId
+      wallet.provider.networkId = chainId
+      wallet.provider.rpcUrl = 'https://bsc-dataseed.binance.org/'
+      wallet.provider.rpc = {
+        56: 'https://bsc-dataseed.binance.org/'
+      }
+      walletOnUnsupportedNetworkOverride = false
+    }
+  }
+  if (walletOnUnsupportedNetwork && walletOnUnsupportedNetworkOverride) {
     return <UnsupportedNetwork />
   }
 

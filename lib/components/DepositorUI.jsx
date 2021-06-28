@@ -7,7 +7,7 @@ import { DepositUI } from 'lib/components/DepositUI'
 import { PrizeCard } from 'lib/components/PrizeCard'
 import { WithdrawUI } from 'lib/components/WithdrawUI'
 import { RelativeInternalLink } from 'lib/components/RelativeInternalLink'
-import { PoolDepositorStatsCard, UsersStatsCard } from 'lib/components/PoolStats'
+import { PoolDepositorStatsCard } from 'lib/components/PoolStats'
 import { useTimeLeftBeforePrize } from 'lib/hooks/useTimeLeftBeforePrize'
 
 export const DepositorUI = (props) => {
